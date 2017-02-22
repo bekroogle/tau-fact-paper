@@ -1,0 +1,175 @@
+% \documentclass{article}
+
+
+\documentclass[12pt, twoside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{times}
+\usepackage{enumerate}
+\usepackage{amscd}
+\usepackage{colonequals}
+\usepackage{bm}
+
+\pagestyle{myheadings}
+\def\titlerunning#1{\gdef\titrun{#1}}
+\makeatletter
+\def\author#1{\gdef\autrun{\def\and{\unskip, }#1}\gdef\@author{#1}}
+\def\address#1{{\def\and{\\\hspace*{18pt}}\renewcommand{\thefootnote}{}%
+\footnote {#1}}%
+\markboth{\autrun}{\titrun}}
+\makeatother
+\def\email#1{e-mail: #1}
+\def\subjclass#1{{\renewcommand{\thefootnote}{}%
+\footnote{\emph{Mathematics Subject Classification (2010):} #1}}}
+\def\keywords#1{\par\medskip
+\noindent\textbf{Keywords.} #1}
+
+
+%% Numbered objects of "theorem" style (text italicized).
+%% The optional parameters indicate that all objects are numbered together, and "by section".
+%% However, you are welcome to use any other numbering system of your choice.
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{lemma}[thm]{Lemma}
+
+
+%% A numbered theorem with a fancy name:
+
+\newtheorem{mainthm}[thm]{Main Theorem}
+
+%% Numbered objects of "non-theorem" style (text roman):
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{exa}[thm]{Example}
+
+%% An unnumbered remark:
+
+\newtheorem*{xrem}{Remark}
+
+
+%% Equations numbered by section:
+
+\numberwithin{equation}{section}
+
+
+%%%%%%%%%%% For JEMS
+\frenchspacing
+
+\textwidth=15cm
+\textheight=23cm
+\parindent=16pt
+\oddsidemargin=-0.5cm
+\evensidemargin=-0.5cm
+\topmargin=-0.5cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\J}{\mathcal{J}}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Endo}{\mathrm{ End}}
+\newcommand{\Hom}{\mathrm{ Hom}}
+\renewcommand{\O}{\mathbf{O}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\PGL}{\mathbf{PGL}}
+\newcommand{\SL}{\mathbf{SL}}
+\newcommand{\cl}{\mathbf{C}}
+\newcommand{\SP}{\mathbf{Spin}}
+\newcommand{\PI}{\mathbf{Pin}}
+\newcommand{\Aut}{\mathbf{Aut}}
+\newcommand{\disc}{\mathrm{disc}}
+\newcommand{\mL}{\mathcal{L}}
+\newcommand{\Max}{\text{Max}}
+\newcommand{\mx}{\text{max}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\Id}{M_{\mathcal{I}^2}}
+\newcommand{\Nid}{M_\mathcal{I}}
+\newcommand{\Sp}{\text{Spec}(D)}
+\newcommand{\e}{\epsilon}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\homeomorphic}{\buildrel \sim \over =}
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%%%%% To ease editing, add:
+
+\baselineskip=17pt
+
+%%%%%%%%%%%%%%%%
+
+%% In the running head, give an abbreviation of the title. 
+\titlerunning{$\tau$-elasticity in $\Z$}
+
+\title{$\bm{\tau}$-elasticity in $\Z$}
+
+\author{Richard Erwin Hasenauer
+\and 
+Benjamin J. Kruger}
+
+\date{}
+
+\maketitle
+
+\address{F1. Hasenauer: Northeastern State University, Tahlequah, OK 74464; \email{hasenaue@nsuok.edu}
+\and
+F2. Kruger: Northeastern State University, Tahlequah, OK 74464; \email{kruger@nsuok.edu}}
+
+
+\begin{abstract}
+    In \cite{Anderson}, $\tau$-factorization was introduced and $\tau$-atomicity was studied in $\Z$.  The authors defined $\tau$-elasticity and invited the reader to explore this question. To this end, we present proof that for $n=3, 4, 5,$ and $8$, $\Z$ is a $\tau_n$-HFDs.  We also discuss $\tau$-elasticity for other values of $n$ in which $\Z$ has unbounded $\tau$-elasticity.  We present asymptotic functions to describe the growth rate for these values of $n$. 
+\end{abstract}
+
+\section{Introduction and motivation}
+
+Factorization has a rich history of study.  Factorization in $\Z$ is easily understood as every integer factors uniquely into a product of primes, we call such a domain a principal ideal domain (PID).  A PID is always a  unique factorization domain (UFD) and the converse is false.   As factorization was explored in more general integral domains, it became necessary to explore ways to describe domains that failed to have unique factorization.  
+
+In an integral domain we say $\lambda \in D$ is a unit if there exist a $b\in D$ such that $\lambda b =1$.  We say $a\in D$ is irreducible, or an atom, if $b=cd$ implies that $c$ or $d$ is a unit.  We say a domain $D$ is atomic if for all nonzero, mom-units, $b \in D$ there exists atoms $a_1, a_2, \cdots a_k$ such that $b=a_1 a_2\cdots a_k$.  IF this atomic factorization is unique up to reordering we call $D$ a UFD.  If for nonzero, non-unit $b\in$ with $b=a_1 a_2 \cdots a_k= c_1 c_2 \cdots c_l$ two atomic factorizations of $b$ we always have $k=l$ we say that $D$ is a half-factorization domain (HFD).  Most domains are not UFDs or HFDs, which leads to the idea of constructing a measure to determine how ``badly`` factorizations fail to have the same length.
+
+For an atomic integral domain $D$ and nonzero, non-unit $b\in D$ we define the elasticity of $b$ as $$\rho(b)=\sup\bigg\{\frac{k}{l} : \text{ where } b=a_1 a_2 \cdots a_k= c_1 c_2 \cdots c_l \text{ are any two atomic factorizations of } b\bigg\},$$ where the $\sup$ of a set is the least upper bound, or supremum.  We define the elasticity of a domain by $$\rho(D)=\sup\{\rho(b) : b\in D\}.$$  From this definition it is clear that if $D$ is a UFD or an HFD, $\rho(D)=1$.
+
+The authors of \cite{Anderson} invited the reader to explore $\tau$-elasticity in integral domains.   We follow their cue and study $\tau$-elasticity in $\Z$.  For an integral domain $D$ and an ideal $J \subset D$ we say $b=\lambda a_1 a_2, \cdots a_k$ is a $\tau_J$ factorization if $a_1 \equiv a_2 \equiv \cdots \equiv a_k$ modulo $J$ and $\lambda$ is any unit of $D$.  We say $a\in D$ is a $\tau_J$ atom if $a=bc$ is a $\tau_J$ factorization of $b$ implies that $b$ or $c$ is a unit.   Similarly we say $b=a_1 a_2\cdots a_k$ is a $\tau_J$-atomic factorization if it is a $\tau_J$-factorization and $a_i$ is a $\tau_J$-atom for $i=1, 2, \cdots, k$.  Using this generalized factorization definition we define $\tau_J$-elasticity of $b\in D$ as $$\epsilon(b)=\sup\bigg\{\frac{k}{l} : \text{ where } b=a_1 a_2 \cdots a_k= c_1 c_2 \cdots c_l \text{ are any two } \tau-\text{atomic factorizations of } b\bigg\},$$ and $$\epsilon(D)=\sup\{\rho(b) : b\in D\}.$$  Similarly we define $\tau$-UFD and $\tau$-HFD, both of which have $\epsilon(D)=1$
+
+We generalize this notion one step further and define elasticity of a non-atomic domain, by only considering the elasticity of elements that have an atomic factorization.
+
+
+\section{$\bm{\tau}$-HFDs in $\Z$}
+
+In $\Z$, all ideals are principal, so we will say $a=b_1 b_2, \cdots c_k$ is a $\tau_n$ factorization if $c_1\equiv c_2\equiv \cdots \equiv c_k (mod n)$.  It was shown in \cite{Anderson} that for $n=0, 1$ $\Z$ is a $tau_n$-UFD, and for $n=2$, $\Z$ is a $\tau_n$-HFD.  We will characterize factorization for other values of $n$.  In particular, we will show that $\Z$ is a $\tau_n$-HFD for $n=3, 4, 5,$ and $8$.
+
+\medskip
+
+\begin {thebibliography}{9}
+\bibitem{Anderson}
+D. Anderson and A.M. Frazier.
+\textit{On a general theory of factorization in integral domains}. 663-705.
+Rocky Mountain Journal of Mathematics. June 2011.
+
+\end{thebibliography}
+
+\end{document}
+
+
